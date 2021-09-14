@@ -1,0 +1,490 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+// Variables :
+// Colors
+$primary: #446df6;
+$success: #33ca7f;
+$danger: #e01541;
+$dark: #121614;
+$light: #a4b1aa;
+
+//  Box Shadow
+$box: 3px 5px 8px 2px;
+
+// Transition
+$trans: all 0.25s ease-in-out;
+
+*,
+*::before,
+*::after {
+  border: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  color: $dark;
+  background: linear-gradient(
+    55deg,
+    #212121 0%,
+    #212121 40%,
+    #323232 calc(40% + 1px),
+    #323232 60%,
+    #008f95 calc(60% + 1px),
+    #008f95 70%,
+    #14ffec calc(70% + 1px),
+    #14ffec 100%
+  );
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: #14ffec;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      40deg,
+      $success 20%,
+      $success 40%,
+      #323232 60%,
+      #008f95 100%,
+      #323232 80%
+    );
+    border-radius: 0px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      40deg,
+      $success 20%,
+      $success 40%,
+      #141414 60%,
+      #05595c 100%,
+      #1b1b1b 80%
+    );
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+  }
+}
+
+.github {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  fill: #333;
+  filter: drop-shadow(0 1px 1px $success);
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0px 6px rgba(65, 65, 65, 0.438));
+  }
+}
+
+.modal_container {
+  position: fixed;
+  background: rgba($dark, 0.2);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: $trans;
+  z-index: 99;
+
+  &.active {
+    opacity: 1;
+    pointer-events: initial;
+  }
+
+  .modal_bg {
+    background: rgba($dark, 0.4);
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .modal_div {
+    position: relative;
+    max-width: 700px;
+    max-height: 80vh;
+    min-height: 40vh;
+    min-width: 300px;
+    overflow: auto;
+    background: url("../components/paper.jpg") no-repeat;
+    background-size: cover;
+    border: 3px solid $light;
+    padding: 2rem;
+    position: relative;
+    color: #fff;
+    line-height: 1.6;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(
+        40deg,
+        rgb(85, 85, 85) 20%,
+        rgb(82, 82, 82) 40%,
+        #cfcfcf 60%,
+        #ffffff 80%,
+        #aaaaaa 100%
+      );
+      border-radius: 0px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        40deg,
+        #000 20%,
+        #000 40%,
+        #9e9e9e 60%,
+        #ffffff 80%,
+        #555555 100%
+      );
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 0px;
+      box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    }
+
+    .modal_title {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      max-width: 95%;
+      overflow: hidden;
+      overflow-wrap: break-word;
+    }
+
+    .modal_button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      color: $light;
+      font-size: 2rem;
+      line-height: 2rem;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      border: 3px solid $light;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: $box rgba($dark, 0.2);
+      transition: $trans;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        border: 3px solid #fff;
+        color: #fff;
+        box-shadow: none;
+      }
+
+      .close_btn {
+        display: grid;
+        place-items: center;
+        // margin-top: -2px;
+      }
+    }
+  }
+  .modal_id {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+.form_container {
+  max-width: 1000px;
+  margin: 1rem auto;
+
+  h1 {
+    font-size: 120px;
+    text-align: center;
+    font-family: "Poppins";
+    -webkit-text-fill-color: #fff;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+    text-shadow: 8px 8px $success, 15px 15px $dark;
+  }
+
+  h3 {
+    color: $success;
+    text-align: center;
+  }
+
+  .message {
+    margin: 1rem 0 1.5rem;
+    color: #fff;
+    padding: 1rem;
+    width: 600px;
+    text-align: center;
+
+    &.success-message {
+      background: $success;
+      box-shadow: 2px 4px 7px 2px rgba($success, 0.2);
+    }
+    &.remove-message {
+      background: $primary;
+      box-shadow: 2px 4px 7px 2px rgba($primary, 0.2);
+    }
+    &.alert-message {
+      background: $danger;
+      box-shadow: 2px 4px 7px 2px rgba($danger, 0.2);
+      transition: 1s all opacity;
+    }
+    &.hidden-message {
+      display: none;
+      opacity: 0;
+    }
+  }
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 600px;
+  color: #fff;
+
+  label,
+  input,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  [for="title"],
+  [for="note"] {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    grid-gap: 1rem;
+    background: rgba($light, 0.2);
+    font-weight: bold;
+    width: 600px;
+    color: #fff;
+
+    margin-bottom: 10px;
+
+    input,
+    textarea {
+      flex: 1 1 80%;
+      border: 3px solid $light;
+      padding: 0.5rem;
+      color: $light;
+      max-width: 600px;
+      transition: 0.4s border;
+
+      &:focus {
+        border: 3px solid $success;
+      }
+    }
+    textarea {
+      min-height: 200px;
+      max-height: 210px;
+      resize: none;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          40deg,
+          $success 20%,
+          $success 40%,
+          #a18aff 60%,
+          #4cd2ff 80%,
+          #6afc82 100%
+        );
+        border-radius: 0px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(
+          40deg,
+          $success 20%,
+          $success 40%,
+          #9278fa 60%,
+          #24c5ff 80%,
+          #43f761 100%
+        );
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 0px;
+        box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+      }
+    }
+  }
+  [type="submit"] {
+    background: $success;
+    box-shadow: $box rgba($success, 0.2);
+    border: 3px solid transparent;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: $trans;
+    width: 600px;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      border: 3px solid rgba($dark, 0.5);
+    }
+  }
+}
+
+.note_container {
+  margin: 2rem auto 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1.5rem;
+  color: #fff;
+
+  .note {
+    border: 3px solid rgba($success, 0.2);
+    padding: 1.5rem;
+    transition: $trans;
+  }
+
+  .note_title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    width: 300px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+
+  .note_body {
+    overflow: hidden;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+  }
+
+  .note_buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0.5rem;
+
+    .note_btn {
+      font-family: inherit;
+      font-size: inherit;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: $trans;
+
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    .note_view {
+      background: $primary;
+      box-shadow: $box rgba($primary, 0.2);
+    }
+
+    .note_delete {
+      background: $danger;
+      box-shadow: $box rgba($danger, 0.2);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 766px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .note_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 450px;
+  }
+  .form_container {
+    transform: scale(0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    background: linear-gradient(
+      55deg,
+      #212121 0%,
+      #212121 40%,
+      #323232 calc(40% + 1px),
+      #323232 60%,
+      #008f95 calc(60% + 1px),
+      #008f95 70%,
+      #14ffec calc(70% + 1px),
+      #14ffec 100%
+    );
+    padding: -10% 0;
+  }
+  .form_container {
+    transform: scale(0.67);
+    width: 300px;
+  }
+  .note_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+  }
+  form {
+    [for="title"],
+    [for="note"] {
+      width: 500px;
+      margin-top: 20px;
+      color: #fff;
+    }
+    [type="submit"] {
+      width: 300px;
+      color: #fff;
+    }
+  }
+  .message {
+    transform: scale(0.8);
+    color: #fff;
+  }
+}
+
+//
+.overflowing {
+  overflow: hidden;
+}
